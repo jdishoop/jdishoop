@@ -1,6 +1,4 @@
-<?php
-get_header();
-?>
+<?php get_header(); ?>
 
 <div class="content-wrap">
   <?php if (have_posts()) : ?>
@@ -16,8 +14,7 @@ get_header();
     <?php endwhile; ?>
   <?php else : ?>
     <div class="page-content">
-      <h1 class="page-title"><?php esc_html_e('Nothing found', 'jdishoop-theme'); ?></h1>
-      <p><?php esc_html_e('No content available yet.', 'jdishoop-theme'); ?></p>
+      <h1 class="page-title"><?php esc_html_e('Nothing found', 'jdishoop-news'); ?></h1>
     </div>
   <?php endif; ?>
 </div>

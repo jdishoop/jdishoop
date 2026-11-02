@@ -1,6 +1,4 @@
-<?php
-get_header();
-?>
+<?php get_header(); ?>
 
 <div class="content-wrap">
   <div class="archive-content">
@@ -9,13 +7,13 @@ get_header();
       <ul class="post-list">
         <?php while (have_posts()) : the_post(); ?>
           <li>
-            <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-            <div><?php echo esc_html(get_the_date()); ?></div>
+            <span class="meta"><?php echo esc_html(get_the_date()); ?></span>
+            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
           </li>
         <?php endwhile; ?>
       </ul>
     <?php else : ?>
-      <p><?php esc_html_e('No posts found.', 'jdishoop-theme'); ?></p>
+      <p><?php esc_html_e('No posts found.', 'jdishoop-news'); ?></p>
     <?php endif; ?>
   </div>
 </div>

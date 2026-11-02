@@ -1,8 +1,3 @@
-<?php
-/**
- * This file is required for WordPress theme.
- */
-?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
@@ -14,18 +9,41 @@
 <?php wp_body_open(); ?>
 
 <header class="site-header">
-  <div class="container">
-    <div class="brand">
-      <?php if (has_custom_logo()) : ?>
-        <?php the_custom_logo(); ?>
-      <?php else : ?>
-        <a href="<?php echo esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
-      <?php endif; ?>
+  <div class="topbar">
+    <div class="container">
+      <div><?php echo esc_html(date_i18n('l, d F Y')); ?></div>
+      <nav aria-label="Top navigation">
+        <ul>
+          <li><a href="#">Breaking</a></li>
+          <li><a href="#">Analysis</a></li>
+          <li><a href="#">World</a></li>
+          <li><a href="#">Business</a></li>
+        </ul>
+      </nav>
     </div>
+  </div>
 
-    <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
+  <div class="header-main">
+    <div class="container">
+      <div class="site-brand">
+        <div class="brand-mark">N</div>
+        <div class="brand-text">
+          <?php bloginfo('name'); ?>
+          <small><?php bloginfo('description'); ?></small>
+        </div>
+      </div>
 
-    <nav class="primary-nav" aria-label="Main navigation">
+      <div class="header-meta">
+        <a href="#">Podcast</a>
+        <a href="#">Live</a>
+        <a href="#" class="header-button">Subscribe</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="primary-nav" aria-label="Main navigation">
+    <div class="container">
+      <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       <?php
       wp_nav_menu(
         array(
@@ -36,8 +54,8 @@
         )
       );
       ?>
-    </nav>
-  </div>
+    </div>
+  </nav>
 </header>
 
 <main class="site-content">

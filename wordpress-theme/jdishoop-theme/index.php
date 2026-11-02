@@ -1,31 +1,22 @@
-# Proyek WordPress Theme Custom
+<?php get_header(); ?>
 
-Folder ini berisi tema WordPress custom yang dibuat dari awal dengan desain modern dan responsive.
+<div class="content-wrap">
+  <div class="archive-content">
+    <h1 class="page-title"><?php printf(esc_html__('Search results for: %s', 'jdishoop-news'), get_search_query()); ?></h1>
 
-## Struktur utama
+    <?php if (have_posts()) : ?>
+      <ul class="post-list">
+        <?php while (have_posts()) : the_post(); ?>
+          <li>
+            <span class="meta"><?php echo esc_html(get_the_date()); ?></span>
+            <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
+          </li>
+        <?php endwhile; ?>
+      </ul>
+    <?php else : ?>
+      <p><?php esc_html_e('No results found.', 'jdishoop-news'); ?></p>
+    <?php endif; ?>
+  </div>
+</div>
 
-- `jdishoop-theme/` : file tema WordPress
-- `assets/js/theme.js` : script untuk menu mobile
-
-## Cara pakai
-
-1. Copy folder `jdishoop-theme` ke direktori `wp-content/themes/` di instalasi WordPress Anda.
-2. Masuk ke Dashboard WordPress > Appearance > Themes.
-3. Aktifkan tema `Jdishoop Theme`.
-4. Atur menu navigasi, widget footer, dan halaman utama sesuai kebutuhan.
-
-## Fitur
-
-- Desain modern dan clean
-- Layout responsif
-- Menu mobile sederhana
-- Hero section untuk landing page
-- Template `front-page`, `page`, `single`, `archive`, dan `search`
-
-## Catatan
-
-Tema ini masih bersifat starter/custom theme yang dapat dikembangkan lebih lanjut sesuai kebutuhan brand, portfolio, bisnis, atau landing page.
-
-## Kontributor
-
-- jdishoop
+<?php get_footer(); ?>
