@@ -3,25 +3,26 @@ Theme Name: Jdishoop News Premium
 Theme URI: https://github.com/jdishoop/jdishoop
 Author: jdishoop
 Author URI: https://github.com/jdishoop
-Description: A flexible, premium WordPress news theme for all categories. Easy to customize, responsive, and built for editorial-style publishing.
-Version: 1.1.0
+Description: A premium black-and-gold WordPress news theme for all categories, designed for contemporary media, local reporting, and flexible editorial layouts.
+Version: 1.2.0
 Text Domain: jdishoop-news
 Requires at least: 6.0
 Tested up to: 6.7
 */
 
 :root {
-  --news-primary: #b78b4a;
-  --news-primary-dark: #8a652d;
-  --news-bg: #f4f1ea;
+  --news-primary: #d4af67;
+  --news-primary-dark: #b6893d;
+  --news-bg: #f5f0e7;
   --news-surface: #ffffff;
-  --news-surface-soft: #f8f3ed;
-  --news-text: #171717;
-  --news-muted: #5e5b57;
-  --news-border: #e8e0d4;
-  --news-dark: #111111;
-  --news-shadow: 0 20px 40px rgba(19, 16, 12, 0.08);
-  --news-shadow-soft: 0 12px 22px rgba(17, 14, 10, 0.05);
+  --news-surface-soft: #f4efe7;
+  --news-text: #121212;
+  --news-muted: #5f5a54;
+  --news-border: #eadcc3;
+  --news-dark: #0b0b0b;
+  --news-dark-soft: #171717;
+  --news-shadow: 0 20px 40px rgba(14, 12, 9, 0.12);
+  --news-shadow-soft: 0 12px 22px rgba(17, 14, 10, 0.06);
 }
 
 * { box-sizing: border-box; }
@@ -53,14 +54,14 @@ img {
 }
 
 .site-header {
-  background: #111111;
+  background: var(--news-dark);
   color: #fff;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid rgba(212,175,103,0.18);
 }
 
 .topbar {
-  background: #0b0b0b;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: #070707;
+  border-bottom: 1px solid rgba(212,175,103,0.1);
 }
 
 .topbar .container {
@@ -109,28 +110,28 @@ img {
 }
 
 .brand-mark {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--news-primary), #d9b978);
+  background: linear-gradient(135deg, var(--news-primary), #f5d991);
   display: grid;
   place-items: center;
   color: #111;
-  font-weight: 800;
-  font-size: 1.1rem;
+  font-weight: 900;
+  font-size: 1.15rem;
 }
 
 .brand-text {
   font-size: clamp(1.4rem, 2vw, 2rem);
   letter-spacing: -0.06em;
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1;
 }
 
 .brand-text small {
   display: block;
-  font-size: 0.63rem;
-  color: rgba(255,255,255,0.7);
+  font-size: 0.66rem;
+  color: rgba(255,255,255,0.68);
   text-transform: uppercase;
   letter-spacing: 0.16em;
   margin-top: 6px;
@@ -152,13 +153,13 @@ img {
   border-radius: 999px;
   background: var(--news-primary);
   color: #111 !important;
-  font-weight: 700;
+  font-weight: 800;
 }
 
 .primary-nav {
-  background: rgba(255,255,255,0.03);
-  border-top: 1px solid rgba(255,255,255,0.05);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
+  background: rgba(255,255,255,0.025);
+  border-top: 1px solid rgba(212,175,103,0.08);
+  border-bottom: 1px solid rgba(212,175,103,0.08);
 }
 
 .primary-nav .container {
@@ -170,8 +171,8 @@ img {
 }
 
 .primary-nav a {
-  color: rgba(255,255,255,0.86);
-  font-size: 0.82rem;
+  color: rgba(255,255,255,0.84);
+  font-size: 0.78rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-weight: 700;
@@ -197,6 +198,13 @@ img {
   padding: 8px 0 20px;
 }
 
+.premium-hero {
+  background: linear-gradient(180deg, rgba(17,17,17,0.96), rgba(17,17,17,0.96));
+  border-top: 1px solid rgba(212,175,103,0.08);
+  border-bottom: 1px solid rgba(212,175,103,0.08);
+  padding-top: 20px;
+}
+
 .hero-grid {
   display: grid;
   grid-template-columns: 1.8fr 0.9fr;
@@ -209,6 +217,12 @@ img {
   border-radius: 22px;
   overflow: hidden;
   box-shadow: var(--news-shadow-soft);
+}
+
+.premium-featured {
+  background: linear-gradient(180deg, #171717, #0f0f0f);
+  border-color: rgba(212,175,103,0.18);
+  color: #fff;
 }
 
 .featured-story .thumb {
@@ -228,9 +242,19 @@ img {
   padding: 24px 26px 26px;
 }
 
+.premium-featured .content {
+  background: #111;
+}
+
+.premium-featured h1 a,
+.premium-featured p,
+.premium-featured .category-tag {
+  color: #fff;
+}
+
 .category-tag {
   display: inline-block;
-  background: #f4ebdc;
+  background: rgba(212,175,103,0.12);
   color: var(--news-primary-dark);
   padding: 7px 10px;
   border-radius: 999px;
@@ -264,6 +288,15 @@ img {
   overflow: hidden;
   box-shadow: var(--news-shadow-soft);
 }
+
+.premium-side-card {
+  background: linear-gradient(180deg, #191919, #101010);
+  border-color: rgba(212,175,103,0.15);
+  color: #fff;
+}
+
+.premium-side-card .content a,
+.premium-side-card .meta { color: #fff; }
 
 .side-card .image {
   height: 150px;
@@ -299,6 +332,11 @@ img {
   margin-bottom: 18px;
 }
 
+.premium-head {
+  border-bottom: 1px solid rgba(212,175,103,0.2);
+  padding-bottom: 12px;
+}
+
 .section-title {
   font-size: clamp(1.6rem, 2vw, 2.4rem);
   margin: 0;
@@ -327,6 +365,10 @@ img {
   border-radius: 18px;
   overflow: hidden;
   box-shadow: var(--news-shadow-soft);
+}
+
+.premium-news-card {
+  border-color: rgba(212,175,103,0.18);
 }
 
 .news-card .thumb,
@@ -396,9 +438,22 @@ img {
   box-shadow: var(--news-shadow-soft);
 }
 
+.premium-list-card {
+  background: linear-gradient(180deg, #111, #1a1712);
+  border-color: rgba(212,175,103,0.2);
+  color: #fff;
+}
+
+.premium-list-card a,
+.premium-list-card .meta,
+.premium-list-card h3 {
+  color: #fff;
+}
+
 .list-card ul,
 .widget-box ul,
-.post-list {
+.post-list,
+.mini-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -406,14 +461,16 @@ img {
 
 .list-card li,
 .widget-box li,
-.post-list li {
+.post-list li,
+.mini-list li {
   padding: 14px 0;
   border-bottom: 1px solid var(--news-border);
 }
 
 .list-card li:last-child,
 .widget-box li:last-child,
-.post-list li:last-child { border-bottom: 0; }
+.post-list li:last-child,
+.mini-list li:last-child { border-bottom: 0; }
 
 .list-card h3,
 .widget-box h3,
@@ -430,6 +487,10 @@ img {
   border-radius: 22px;
   padding: 26px;
   box-shadow: var(--news-shadow);
+}
+
+.premium-newsletter {
+  background: linear-gradient(135deg, #090909, #2a220f);
 }
 
 .newsletter h3 {

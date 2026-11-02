@@ -25,6 +25,17 @@ add_action('wp_enqueue_scripts', 'jdishoop_news_enqueue_assets');
 function jdishoop_news_widgets_init() {
   register_sidebar(
     array(
+      'name'          => __('Homepage Sidebar', 'jdishoop-news'),
+      'id'            => 'homepage-sidebar',
+      'before_widget' => '<div class="widget-box">',
+      'after_widget'  => '</div>',
+      'before_title'  => '<h3>',
+      'after_title'   => '</h3>',
+    )
+  );
+
+  register_sidebar(
+    array(
       'name'          => __('Footer Column 1', 'jdishoop-news'),
       'id'            => 'footer-1',
       'before_widget' => '<div class="footer-card">',
@@ -83,6 +94,7 @@ function jdishoop_news_get_category_cards($categories = 6) {
         'posts_per_page' => 1,
         'category'       => $term->term_id,
         'post_status'    => 'publish',
+        'ignore_sticky_posts' => 1,
       )
     );
 
@@ -108,5 +120,68 @@ function jdishoop_news_get_category_cards($categories = 6) {
     echo '</article>';
   }
 
+  echo '</div>';
+}
+
+function jdishoop_news_get_trending_posts($count = 5) {
+  $query = new WP_Query(
+    array(
+      'posts_per_page' => $count,
+      'post_status'    => 'publish',
+      'ignore_sticky_posts' => 1,
+      'orderby'        => 'comment_count',
+      'order'          => 'DESC',
+    )
+  );
+
+  if (!$query->have_posts()) {
+    return array();
+  }
+
+  $posts = array();
+  while ($query->have_posts()) {
+    $query->the_post();
+    $posts[] = get_post();
+  }
+  wp_reset_postdata();
+
+  return $posts;
+}
+
+function jdishoop_news_get_category_list($count = 6) {
+  $categories = get_categories(
+    array(
+      'hide_empty' => true,
+      'number'     => $count,
+    )
+  );
+
+  return $categories;
+}
+
+function jdishoop_news_render_default_sidebar() {
+  $trending_posts = jdishoop_news_get_trending_posts(5);
+  $categories = jdishoop_news_get_category_list(6);
+
+  echo '<div class="widget-box">';
+  echo '<h3>Trending</h3>';
+  echo '<ul class="mini-list">';
+  if (!empty($trending_posts)) {
+    foreach ($trending_posts as $post) {
+      echo '<li><a href="' . esc_url(get_permalink($post)) . '">' . esc_html($post->post_title) . '</a></li>';
+    }
+  }
+  echo '</ul>';
+  echo '</div>';
+
+  echo '<div class="widget-box">';
+  echo '<h3>Categories</h3>';
+  echo '<ul class="mini-list">';
+  if (!empty($categories)) {
+    foreach ($categories as $category) {
+      echo '<li><a href="' . esc_url(get_category_link($category)) . '">' . esc_html($category->name) . '</a></li>';
+    }
+  }
+  echo '</ul>';
   echo '</div>';
 }
