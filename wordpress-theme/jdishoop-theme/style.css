@@ -3,26 +3,25 @@ Theme Name: Jdishoop News Premium
 Theme URI: https://github.com/jdishoop/jdishoop
 Author: jdishoop
 Author URI: https://github.com/jdishoop
-Description: Premium modern media/news WordPress theme with magazine style homepage, editorial layout, and feature-rich content blocks.
-Version: 1.0.0
+Description: A flexible, premium WordPress news theme for all categories. Easy to customize, responsive, and built for editorial-style publishing.
+Version: 1.1.0
 Text Domain: jdishoop-news
 Requires at least: 6.0
 Tested up to: 6.7
 */
 
 :root {
-  --jn-bg: #f4f1ea;
-  --jn-surface: #ffffff;
-  --jn-surface-soft: #f8f3ed;
-  --jn-primary: #b78b4a;
-  --jn-primary-dark: #8d6930;
-  --jn-secondary: #1d1d1d;
-  --jn-text: #171717;
-  --jn-muted: #5e5b57;
-  --jn-border: #e8e0d4;
-  --jn-shadow: 0 20px 40px rgba(19, 16, 12, 0.08);
-  --jn-shadow-soft: 0 12px 22px rgba(17, 14, 10, 0.05);
-  --jn-red: #b72626;
+  --news-primary: #b78b4a;
+  --news-primary-dark: #8a652d;
+  --news-bg: #f4f1ea;
+  --news-surface: #ffffff;
+  --news-surface-soft: #f8f3ed;
+  --news-text: #171717;
+  --news-muted: #5e5b57;
+  --news-border: #e8e0d4;
+  --news-dark: #111111;
+  --news-shadow: 0 20px 40px rgba(19, 16, 12, 0.08);
+  --news-shadow-soft: 0 12px 22px rgba(17, 14, 10, 0.05);
 }
 
 * { box-sizing: border-box; }
@@ -30,15 +29,16 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, sans-serif;
-  background: var(--jn-bg);
-  color: var(--jn-text);
+  background: var(--news-bg);
+  color: var(--news-text);
   line-height: 1.7;
 }
 
 a {
-  color: var(--jn-secondary);
+  color: var(--news-text);
   text-decoration: none;
 }
+
 a:hover { text-decoration: none; }
 
 img {
@@ -112,7 +112,7 @@ img {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--jn-primary), #d9b978);
+  background: linear-gradient(135deg, var(--news-primary), #d9b978);
   display: grid;
   place-items: center;
   color: #111;
@@ -150,7 +150,7 @@ img {
   justify-content: center;
   padding: 12px 18px;
   border-radius: 999px;
-  background: var(--jn-primary);
+  background: var(--news-primary);
   color: #111 !important;
   font-weight: 700;
 }
@@ -204,11 +204,11 @@ img {
 }
 
 .featured-story {
-  background: var(--jn-surface);
-  border: 1px solid var(--jn-border);
+  background: var(--news-surface);
+  border: 1px solid var(--news-border);
   border-radius: 22px;
   overflow: hidden;
-  box-shadow: var(--jn-shadow-soft);
+  box-shadow: var(--news-shadow-soft);
 }
 
 .featured-story .thumb {
@@ -231,7 +231,7 @@ img {
 .category-tag {
   display: inline-block;
   background: #f4ebdc;
-  color: var(--jn-primary-dark);
+  color: var(--news-primary-dark);
   padding: 7px 10px;
   border-radius: 999px;
   font-size: 0.72rem;
@@ -248,7 +248,7 @@ img {
 }
 
 .featured-story p {
-  color: var(--jn-muted);
+  color: var(--news-muted);
   margin: 0;
 }
 
@@ -258,11 +258,11 @@ img {
 }
 
 .side-card {
-  background: var(--jn-surface);
-  border: 1px solid var(--jn-border);
+  background: var(--news-surface);
+  border: 1px solid var(--news-border);
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--jn-shadow-soft);
+  box-shadow: var(--news-shadow-soft);
 }
 
 .side-card .image {
@@ -306,43 +306,49 @@ img {
 }
 
 .section-link {
-  color: var(--jn-primary-dark);
+  color: var(--news-primary-dark);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   font-size: 0.75rem;
 }
 
-.news-grid {
+.news-grid,
+.category-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 22px;
 }
 
-.news-card {
-  background: var(--jn-surface);
-  border: 1px solid var(--jn-border);
+.news-card,
+.category-panel {
+  background: var(--news-surface);
+  border: 1px solid var(--news-border);
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: var(--jn-shadow-soft);
+  box-shadow: var(--news-shadow-soft);
 }
 
-.news-card .thumb {
+.news-card .thumb,
+.category-panel .thumb {
   height: 210px;
   background: linear-gradient(135deg, #2a2c35, #b58d54);
 }
 
-.news-card .thumb img {
+.news-card .thumb img,
+.category-panel .thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.news-card .body {
+.news-card .body,
+.category-panel .body {
   padding: 18px 20px 22px;
 }
 
-.news-card h3 {
+.news-card h3,
+.category-panel h3 {
   margin: 10px 0 10px;
   font-size: 1.45rem;
   line-height: 1.2;
@@ -354,15 +360,16 @@ img {
 .post-list li time,
 .article-meta,
 .entry-content p,
-.page-content p {
-  color: var(--jn-muted);
+.page-content p,
+.category-panel .meta {
+  color: var(--news-muted);
 }
 
 .meta {
   font-size: 0.74rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
-  color: var(--jn-muted);
+  color: var(--news-muted);
   font-weight: 700;
 }
 
@@ -382,11 +389,11 @@ img {
 .list-card,
 .widget-box,
 .content-box {
-  background: var(--jn-surface);
-  border: 1px solid var(--jn-border);
+  background: var(--news-surface);
+  border: 1px solid var(--news-border);
   border-radius: 18px;
   padding: 22px;
-  box-shadow: var(--jn-shadow-soft);
+  box-shadow: var(--news-shadow-soft);
 }
 
 .list-card ul,
@@ -401,7 +408,7 @@ img {
 .widget-box li,
 .post-list li {
   padding: 14px 0;
-  border-bottom: 1px solid var(--jn-border);
+  border-bottom: 1px solid var(--news-border);
 }
 
 .list-card li:last-child,
@@ -422,7 +429,7 @@ img {
   color: #fff;
   border-radius: 22px;
   padding: 26px;
-  box-shadow: var(--jn-shadow);
+  box-shadow: var(--news-shadow);
 }
 
 .newsletter h3 {
@@ -453,7 +460,7 @@ img {
 .newsletter-form button,
 .btn-primary {
   border: 0;
-  background: var(--jn-primary);
+  background: var(--news-primary);
   color: #111;
   font-weight: 800;
   border-radius: 999px;
@@ -469,11 +476,11 @@ img {
 .page-content,
 .single-content,
 .archive-content {
-  background: var(--jn-surface);
-  border: 1px solid var(--jn-border);
+  background: var(--news-surface);
+  border: 1px solid var(--news-border);
   border-radius: 22px;
   padding: 30px;
-  box-shadow: var(--jn-shadow-soft);
+  box-shadow: var(--news-shadow-soft);
 }
 
 .entry-title,
@@ -515,8 +522,8 @@ img {
 blockquote {
   margin: 1.8rem 0;
   padding: 20px 24px;
-  border-left: 4px solid var(--jn-primary);
-  background: var(--jn-surface-soft);
+  border-left: 4px solid var(--news-primary);
+  background: var(--news-surface-soft);
   font-size: 1.12rem;
 }
 
@@ -562,6 +569,7 @@ blockquote {
   .hero-grid,
   .editorial-layout,
   .news-grid,
+  .category-grid,
   .footer-grid {
     grid-template-columns: 1fr;
   }

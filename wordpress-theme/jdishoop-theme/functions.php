@@ -62,3 +62,51 @@ function jdishoop_news_excerpt_more($more) {
   return '...';
 }
 add_filter('excerpt_more', 'jdishoop_news_excerpt_more');
+
+function jdishoop_news_get_category_cards($categories = 6) {
+  $terms = get_categories(
+    array(
+      'hide_empty' => true,
+      'number'     => $categories,
+    )
+  );
+
+  if (empty($terms)) {
+    return;
+  }
+
+  echo '<div class="category-grid">';
+
+  foreach ($terms as $term) {
+    $posts = get_posts(
+      array(
+        'posts_per_page' => 1,
+        'category'       => $term->term_id,
+        'post_status'    => 'publish',
+      )
+    );
+
+    $thumbnail_url = '';
+    if (!empty($posts)) {
+      $post_id = $posts[0]->ID;
+      if (has_post_thumbnail($post_id)) {
+        $thumbnail_url = get_the_post_thumbnail_url($post_id, 'medium_large');
+      }
+    }
+
+    if (!$thumbnail_url) {
+      $thumbnail_url = 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80';
+    }
+
+    echo '<article class="category-panel">';
+    echo '<div class="thumb"><img src="' . esc_url($thumbnail_url) . '" alt="' . esc_attr($term->name) . '"></div>';
+    echo '<div class="body">';
+    echo '<span class="meta">Category</span>';
+    echo '<h3><a href="' . esc_url(get_category_link($term)) . '">' . esc_html($term->name) . '</a></h3>';
+    echo '<p>' . esc_html($term->count) . ' stories</p>';
+    echo '</div>';
+    echo '</article>';
+  }
+
+  echo '</div>';
+}

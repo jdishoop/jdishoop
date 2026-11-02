@@ -14,10 +14,14 @@
       <div><?php echo esc_html(date_i18n('l, d F Y')); ?></div>
       <nav aria-label="Top navigation">
         <ul>
-          <li><a href="#">Breaking</a></li>
-          <li><a href="#">Analysis</a></li>
-          <li><a href="#">World</a></li>
-          <li><a href="#">Business</a></li>
+          <?php
+          $categories = get_categories(array('hide_empty' => true, 'number' => 5));
+          if ($categories) {
+            foreach ($categories as $category) {
+              echo '<li><a href="' . esc_url(get_category_link($category)) . '">' . esc_html($category->name) . '</a></li>';
+            }
+          }
+          ?>
         </ul>
       </nav>
     </div>

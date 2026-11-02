@@ -98,6 +98,16 @@ $latest_posts = get_posts(
 <section class="section-wrap">
   <div class="container">
     <div class="section-head">
+      <h2 class="section-title">Browse by category</h2>
+      <a href="<?php echo esc_url(home_url('/news')); ?>" class="section-link">All categories</a>
+    </div>
+    <?php jdishoop_news_get_category_cards(6); ?>
+  </div>
+</section>
+
+<section class="section-wrap">
+  <div class="container">
+    <div class="section-head">
       <h2 class="section-title">Latest stories</h2>
       <a href="<?php echo esc_url(home_url('/news')); ?>" class="section-link">Browse all</a>
     </div>

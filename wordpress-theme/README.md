@@ -1,34 +1,49 @@
-# Premium Media / News Theme
+# Jdishoop News Premium
 
-Folder ini berisi tema WordPress premium berbasis media berita dengan gaya editorial modern, hero feature, dan layout seperti newsroom.
+Tema WordPress premium modern untuk media berita yang bisa dipakai untuk semua kategori. Struktur dibuat agar mudah dikustomisasi dan dibedakan berdasarkan kategori tanpa harus menulis ulang tema.
 
-## Struktur tema
+## Fitur utama
 
-- `jdishoop-theme/` — folder utama tema WordPress
-- `assets/js/theme.js` — script untuk menu mobile
+- Berita utama dan sidebar highlight
+- Kategori dinamis untuk semua topik
+- Homepage yang bisa menampilkan berbagai kategori
+- Layout editorial premium
+- Responsif untuk desktop, tablet, dan mobile
+- Mudah diubah warna utama dan tampilan lewat CSS variables
 
-## Cara install
+## Struktur utama
+
+- `jdishoop-theme/` — tema utama
+- `assets/js/theme.js` — script menu mobile
+
+## Cara pakai
 
 1. Copy folder `jdishoop-theme` ke `wp-content/themes/` di WordPress Anda.
-2. Masuk ke Dashboard > Appearance > Themes.
-3. Aktifkan tema `Jdishoop News Premium`.
-4. Atur menu navigasi di Appearance > Menus.
-5. Tambahkan widget footer di Appearance > Widgets.
+2. Aktifkan tema dari Dashboard > Appearance > Themes.
+3. Atur menu navigasi dari Appearance > Menus.
+4. Buat kategori seperti Politik, Ekonomi, Olahraga, Teknologi, Hiburan, dll.
+5. Tulis artikel di setiap kategori, dan homepage akan menyesuaikan secara otomatis.
 
-## Fitur
+## Mudah diubah
 
-- Desain premium newsroom / media
-- Layout homepage mirip portal berita
-- Fokus pada editorial headline
-- Responsif untuk desktop, tablet, dan mobile
-- Cocok untuk portal berita, magazine, usaha media, atau blog premium
+Untuk mengganti tampilan utama, cukup ubah variable di file `style.css`:
+
+```css
+:root {
+  --news-primary: #b78b4a;
+  --news-bg: #f4f1ea;
+  --news-dark: #111111;
+  --news-text: #171717;
+}
+```
+
+Semua komponen utama memakai variable ini, jadi perubahan warna menjadi lebih cepat dan praktis.
 
 ## Catatan
 
-Tema ini bisa dikembangkan lebih lanjut dengan:
+Tema ini dirancang sebagai versi umum semua kategori dan bisa dikembangkan lebih lanjut dengan:
 
-- kategori berita berbasis section
-- sidebar trending
-- widget video
-- homepage custom block editor
-- branding logo dan warna unik brand
+- section trending berbasis kategori
+- widget berita terpopuler
+- homepage dengan drag-and-drop blocks
+- branding logo dan gaya khusus media
