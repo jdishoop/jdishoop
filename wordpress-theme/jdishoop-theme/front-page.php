@@ -50,8 +50,8 @@ $display_categories = jdishoop_news_get_category_list(6);
           </div>
           <div class="content">
             <span class="category-tag">Premium</span>
-            <h1><a href="#">Indonesia moving with a stronger digital economy and the next era of media.</a></h1>
-            <p>Modern journalism, premium design, and fast coverage for the national conversation.</p>
+            <h1><a href="#">Modern coverage with a bold, authoritative editorial presence.</a></h1>
+            <p>Premium digital journalism built for a reliable, contemporary news experience.</p>
           </div>
         </article>
       <?php endif; ?>
@@ -91,8 +91,8 @@ $display_categories = jdishoop_news_get_category_list(6);
               <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80" alt="Latest news">
             </div>
             <div class="content">
-              <span class="meta">Indonesia</span>
-              <h3><a href="#">Local reporting remains the foundation of a stronger public conversation.</a></h3>
+              <span class="meta">Latest</span>
+              <h3><a href="#">Fast, accurate, and premium journalism for a credible digital brand.</a></h3>
             </div>
           </article>
         <?php endif; ?>
@@ -114,8 +114,8 @@ $display_categories = jdishoop_news_get_category_list(6);
 <section class="section-wrap">
   <div class="container">
     <div class="section-head premium-head">
-      <h2 class="section-title">Indonesia today</h2>
-      <a href="<?php echo esc_url(home_url('/category')); ?>" class="section-link">Browse updates</a>
+      <h2 class="section-title">Latest stories</h2>
+      <a href="<?php echo esc_url(home_url('/news')); ?>" class="section-link">Browse updates</a>
     </div>
 
     <div class="news-grid">
@@ -139,29 +139,29 @@ $display_categories = jdishoop_news_get_category_list(6);
         <?php wp_reset_postdata(); ?>
       <?php else : ?>
         <article class="news-card premium-news-card">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Indonesia 1"></div>
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80" alt="Story 1"></div>
           <div class="body">
             <span class="meta">September 2</span>
-            <h3><a href="#">A stronger local agenda leads the next chapter of national coverage.</a></h3>
-            <p>Public issues move faster when local perspectives stay visible, accountable, and connected.</p>
+            <h3><a href="#">A modern newsroom blends clarity, speed, and public trust.</a></h3>
+            <p>Readers choose credible platforms that remain direct, local, and clearly accountable.</p>
           </div>
         </article>
 
         <article class="news-card premium-news-card">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" alt="Indonesia 2"></div>
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=900&q=80" alt="Story 2"></div>
           <div class="body">
             <span class="meta">September 1</span>
-            <h3><a href="#">Regional development is shaping more of the public conversation.</a></h3>
-            <p>Insights from the regions deepen understanding of the broader national story.</p>
+            <h3><a href="#">Digital coverage keeps evolving with stronger audience expectations.</a></h3>
+            <p>High-quality reporting remains essential when audiences seek clarity and authenticity.</p>
           </div>
         </article>
 
         <article class="news-card premium-news-card">
-          <div class="thumb"><img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=80" alt="Indonesia 3"></div>
+          <div class="thumb"><img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=80" alt="Story 3"></div>
           <div class="body">
             <span class="meta">August 29</span>
-            <h3><a href="#">More audiences are choosing reporting that is local, transparent, and current.</a></h3>
-            <p>Quality journalism still wins when it is direct, grounded, and highly relevant.</p>
+            <h3><a href="#">Smart editorial design turns important news into a stronger reading experience.</a></h3>
+            <p>The right format helps readers stay connected to major stories without friction.</p>
           </div>
         </article>
       <?php endif; ?>
@@ -192,7 +192,7 @@ $display_categories = jdishoop_news_get_category_list(6);
     <div class="sidebar-column">
       <div class="newsletter premium-newsletter">
         <h3>Daily Brief</h3>
-        <p>News from the front pages, delivered to your inbox before the morning rush.</p>
+        <p>Top stories and strategic updates designed for readers who want clarity fast.</p>
         <form class="newsletter-form">
           <input type="email" placeholder="Email address" aria-label="Email address">
           <button type="submit">Join</button>
