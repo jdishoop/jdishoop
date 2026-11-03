@@ -1,0 +1,43 @@
+.wrmi-ad {
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: min(100%, var(--wrmi-max-width, 970px));
+	min-width: min(var(--wrmi-min-width, 320px), 100%);
+	min-height: var(--wrmi-min-height, 50px);
+	margin: 1.5rem auto;
+	text-align: center;
+}
+
+.wrmi-ad-link {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 100%;
+}
+
+.wrmi-ad-image {
+	display: block;
+	width: auto;
+	max-width: 100%;
+	max-height: var(--wrmi-max-height, 300px);
+	object-fit: contain;
+}
+
+.wrmi-ad-text,
+.wrmi-ad-html {
+	width: 100%;
+	max-width: var(--wrmi-max-width, 970px);
+}
+
+.wrmi-ad-placeholder {
+	display: grid;
+	place-items: center;
+	width: 100%;
+	min-height: var(--wrmi-default-height, 90px);
+	padding: 1rem;
+	background: #f2f4f7;
+	color: #475467;
+}

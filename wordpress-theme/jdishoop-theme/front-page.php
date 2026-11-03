@@ -1,26 +1,67 @@
 <?php
 get_header();
 
-$featured_posts = get_posts(
-  array(
-    'posts_per_page' => 1,
-    'post_status'    => 'publish',
-    'ignore_sticky_posts' => 1,
-  )
-);
+$editorial_data = function_exists('wrmj_get_homepage_editorial_data')
+  ? wrmj_get_homepage_editorial_data()
+  : array('headline_id' => 0, 'editor_pick_ids' => array());
+
+$editorial_headline = !empty($editorial_data['headline_id'])
+  ? get_post($editorial_data['headline_id'])
+  : null;
+
+$featured_posts = $editorial_headline instanceof WP_Post
+  ? array($editorial_headline)
+  : get_posts(
+    array(
+      'posts_per_page' => 1,
+      'post_status'    => 'publish',
+      'ignore_sticky_posts' => 1,
+      'meta_query'     => jdishoop_news_standard_posts_meta_query(),
+    )
+  );
+
+$featured_post_ids = !empty($featured_posts)
+  ? array((int) $featured_posts[0]->ID)
+  : array();
+
+$sidebar_posts = array();
+foreach (array_slice($editorial_data['editor_pick_ids'], 0, 2) as $editorial_pick_id) {
+  $editorial_pick = get_post($editorial_pick_id);
+  if ($editorial_pick instanceof WP_Post) {
+    $sidebar_posts[] = $editorial_pick;
+  }
+}
+
+if (empty($sidebar_posts)) {
+  $sidebar_posts = get_posts(
+    array(
+      'posts_per_page'      => 2,
+      'post_status'         => 'publish',
+      'post__not_in'        => $featured_post_ids,
+      'ignore_sticky_posts' => 1,
+      'meta_query'          => jdishoop_news_standard_posts_meta_query(),
+    )
+  );
+}
+
+$sidebar_post_ids = array_map('intval', wp_list_pluck($sidebar_posts, 'ID'));
+$excluded_homepage_posts = array_values(array_unique(array_merge($featured_post_ids, $sidebar_post_ids)));
 
 $latest_posts = get_posts(
   array(
-    'posts_per_page' => 6,
-    'post_status'    => 'publish',
-    'offset'         => 1,
+    'posts_per_page'      => 6,
+    'post_status'         => 'publish',
+    'post__not_in'        => $excluded_homepage_posts,
     'ignore_sticky_posts' => 1,
+    'meta_query'          => jdishoop_news_standard_posts_meta_query(),
   )
 );
 
 $trending_posts = jdishoop_news_get_trending_posts(5);
 $display_categories = jdishoop_news_get_category_list(6);
 ?>
+
+<?php jdishoop_news_render_ad_slot('top'); ?>
 
 <section class="hero-news premium-hero">
   <div class="container">
@@ -57,17 +98,6 @@ $display_categories = jdishoop_news_get_category_list(6);
       <?php endif; ?>
 
       <div class="sidebar-stack">
-        <?php
-        $sidebar_posts = get_posts(
-          array(
-            'posts_per_page' => 2,
-            'post_status' => 'publish',
-            'offset' => 1,
-            'ignore_sticky_posts' => 1,
-          )
-        );
-        ?>
-
         <?php if (!empty($sidebar_posts)) : ?>
           <?php foreach ($sidebar_posts as $post) : setup_postdata($post); ?>
             <article class="side-card premium-side-card">
@@ -79,7 +109,13 @@ $display_categories = jdishoop_news_get_category_list(6);
                 <?php endif; ?>
               </div>
               <div class="content">
-                <span class="meta"><?php echo esc_html(get_the_date()); ?></span>
+                <span class="meta">
+                  <?php if (in_array((int) $post->ID, $editorial_data['editor_pick_ids'], true)) : ?>
+                    <?php esc_html_e('Pilihan Redaksi', 'jdishoop-news'); ?>
+                  <?php else : ?>
+                    <?php echo esc_html(get_the_date()); ?>
+                  <?php endif; ?>
+                </span>
                 <h3><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
               </div>
             </article>
@@ -100,6 +136,8 @@ $display_categories = jdishoop_news_get_category_list(6);
     </div>
   </div>
 </section>
+
+<?php jdishoop_news_render_ad_slot('mid_content'); ?>
 
 <section class="section-wrap">
   <div class="container">
@@ -204,6 +242,8 @@ $display_categories = jdishoop_news_get_category_list(6);
       <?php else : ?>
         <?php jdishoop_news_render_default_sidebar(); ?>
       <?php endif; ?>
+
+      <?php jdishoop_news_render_ad_slot('sidebar'); ?>
     </div>
   </div>
 </section>

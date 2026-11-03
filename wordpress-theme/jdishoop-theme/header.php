@@ -38,9 +38,7 @@
       </div>
 
       <div class="header-meta">
-        <a href="#">Podcast</a>
-        <a href="#">Live</a>
-        <a href="#" class="header-button">Subscribe</a>
+        <a href="<?php echo esc_url(home_url('/podcast/')); ?>"><?php esc_html_e('Podcast', 'jdishoop-news'); ?></a>
       </div>
     </div>
   </div>

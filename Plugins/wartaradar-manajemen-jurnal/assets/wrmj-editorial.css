@@ -1,0 +1,34 @@
+.wrmj-homepage-editorial__headline,
+.wrmj-homepage-editorial__picks {
+	margin-block: 1.5rem;
+}
+
+.wrmj-homepage-editorial__headline > h2,
+.wrmj-homepage-editorial__picks > h2 {
+	margin: 0 0 1rem;
+}
+
+.wrmj-editorial-card {
+	min-width: 0;
+	padding-block: 1rem;
+	border-bottom: 1px solid #dfe5eb;
+}
+
+.wrmj-editorial-card__image {
+	display: block;
+	margin-bottom: 0.75rem;
+}
+
+.wrmj-editorial-card__image img {
+	display: block;
+	width: 100%;
+	height: auto;
+}
+
+.wrmj-editorial-card__content h3 {
+	margin: 0 0 0.5rem;
+}
+
+.wrmj-editorial-card__content p {
+	margin: 0;
+}

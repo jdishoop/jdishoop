@@ -22,6 +22,29 @@ function jdishoop_news_enqueue_assets() {
 }
 add_action('wp_enqueue_scripts', 'jdishoop_news_enqueue_assets');
 
+function jdishoop_news_render_ad_slot($position) {
+  if (!shortcode_exists('wrmi_ad')) {
+    return;
+  }
+
+  $position = sanitize_key($position);
+  if (!$position) {
+    return;
+  }
+
+  $markup = do_shortcode('[wrmi_ad placement="' . esc_attr($position) . '"]');
+  if ('' === trim($markup)) {
+    return;
+  }
+
+  printf(
+    '<aside class="news-ad-slot news-ad-slot--%1$s" aria-label="%2$s">%3$s</aside>',
+    esc_attr($position),
+    esc_attr__('Iklan', 'jdishoop-news'),
+    $markup
+  );
+}
+
 function jdishoop_news_widgets_init() {
   register_sidebar(
     array(
@@ -74,6 +97,41 @@ function jdishoop_news_excerpt_more($more) {
 }
 add_filter('excerpt_more', 'jdishoop_news_excerpt_more');
 
+function jdishoop_news_standard_posts_meta_query() {
+  return array(
+    'relation' => 'OR',
+    array(
+      'key'     => '_wartaradar_is_podcast',
+      'compare' => 'NOT EXISTS',
+    ),
+    array(
+      'key'     => '_wartaradar_is_podcast',
+      'value'   => '1',
+      'compare' => '!=',
+    ),
+  );
+}
+
+function jdishoop_news_filter_standard_post_queries($query) {
+  if (is_admin() || !$query->is_main_query() || $query->is_singular()) {
+    return;
+  }
+
+  $meta_query = $query->get('meta_query');
+  if (!empty($meta_query)) {
+    $meta_query = array(
+      'relation' => 'AND',
+      $meta_query,
+      jdishoop_news_standard_posts_meta_query(),
+    );
+  } else {
+    $meta_query = jdishoop_news_standard_posts_meta_query();
+  }
+
+  $query->set('meta_query', $meta_query);
+}
+add_action('pre_get_posts', 'jdishoop_news_filter_standard_post_queries');
+
 function jdishoop_news_get_category_cards($categories = 6) {
   $terms = get_categories(
     array(
@@ -95,6 +153,7 @@ function jdishoop_news_get_category_cards($categories = 6) {
         'category'       => $term->term_id,
         'post_status'    => 'publish',
         'ignore_sticky_posts' => 1,
+        'meta_query'     => jdishoop_news_standard_posts_meta_query(),
       )
     );
 
@@ -131,6 +190,7 @@ function jdishoop_news_get_trending_posts($count = 5) {
       'ignore_sticky_posts' => 1,
       'orderby'        => 'comment_count',
       'order'          => 'DESC',
+      'meta_query'     => jdishoop_news_standard_posts_meta_query(),
     )
   );
 

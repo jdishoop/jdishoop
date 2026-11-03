@@ -1,0 +1,38 @@
+.wrc-podcast-list {
+	display: grid;
+	gap: 1.5rem;
+}
+
+.wrc-podcast-episode {
+	min-width: 0;
+	padding: 1.25rem 0;
+	border-bottom: 1px solid #dfe5eb;
+}
+
+.wrc-podcast-episode__meta {
+	margin-bottom: 0.5rem;
+	color: #56616f;
+	font-size: 0.875rem;
+}
+
+.wrc-podcast-episode__title {
+	margin: 0 0 0.5rem;
+}
+
+.wrc-podcast-episode__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.wrc-podcast-episode__excerpt {
+	margin: 0 0 1rem;
+}
+
+.wrc-podcast-episode audio {
+	display: block;
+	width: min(100%, 42rem);
+}
+
+.wrc-podcast-empty {
+	margin-block: 1rem;
+}
